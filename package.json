@@ -1,0 +1,22 @@
+{
+  "name": "alexa-apl-interface",
+  "version": "1.0.0",
+  "description": "Implementation of the Alexa Presentation Language (APL) Interface Reference — Alexa.Presentation.APL, APLA, APLT, Alexa.DataStore, and Alexa.DataStore.PackageManager interfaces",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "alexa",
+    "apl",
+    "alexa-presentation-language",
+    "alexa-skills-kit"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  }
+}
