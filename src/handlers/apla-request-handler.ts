@@ -3,6 +3,8 @@
  *
  * Handles incoming requests from the APLA interface:
  *   - RuntimeError: An error occurred during APL audio processing
+ *
+ * @deprecated APLA request handlers are deprecated. Use APLT instead.
  */
 
 import { Request, AlexaSkillRequest } from "../types/common";
@@ -22,6 +24,7 @@ import {
  * Sent to notify the skill about any errors that happened during
  * APL audio processing. This request is for notification only —
  * the skill can't return a response.
+ * @deprecated Use APLT instead.
  */
 export interface APLARuntimeErrorHandler {
   canHandle(request: APLARuntimeErrorRequest): boolean;
@@ -35,6 +38,7 @@ export interface APLARuntimeErrorHandler {
 // Request type guards
 // ===========================================================================
 
+/** @deprecated Use APLT instead. */
 export function isAPLARuntimeError(
   request: Request,
 ): request is APLARuntimeErrorRequest {
@@ -47,6 +51,7 @@ export function isAPLARuntimeError(
 
 /**
  * Extract the errors from an APLA RuntimeError request.
+ * @deprecated Use APLT instead.
  */
 export function getAPLARuntimeErrors(
   request: APLARuntimeErrorRequest,

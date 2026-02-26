@@ -3,6 +3,9 @@
  *
  * Provides factory functions and a builder class for constructing
  * APLA (APL for Audio) directives to send back to Alexa in skill responses.
+ *
+ * @deprecated APLA directives are deprecated. Use APLT directives instead.
+ * @see {@link ../aplt-directives} for the replacement API.
  */
 
 import { APLADocument, APLARenderDocumentDirective } from "../types/apla";
@@ -12,6 +15,7 @@ import { assertValidDocumentName } from "../validators/document-name-validator";
 // RenderDocument builder
 // ===========================================================================
 
+/** @deprecated Use {@link APLTRenderDocumentDirectiveBuilder} from aplt-directives instead. */
 export class APLARenderDocumentDirectiveBuilder {
   private token?: string;
   private document: APLADocument | null = null;
@@ -98,6 +102,7 @@ export class APLARenderDocumentDirectiveBuilder {
  * Create an APLA RenderDocument directive from a full APLA document.
  *
  * Validates all required fields before returning the directive.
+ * @deprecated Use {@link createAPLTRenderDocumentDirective} from aplt-directives instead.
  * @throws Error if `document` is missing.
  */
 export function createAPLARenderDocumentDirective(
@@ -123,6 +128,7 @@ export function createAPLARenderDocumentDirective(
  * Create an APLA RenderDocument directive from a linked document.
  *
  * The document name is validated to contain only safe characters.
+ * @deprecated Use APLT directives instead. APLA is deprecated.
  * @throws Error if `documentName` is invalid.
  */
 export function createLinkedAPLARenderDocumentDirective(

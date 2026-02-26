@@ -4,6 +4,8 @@
  * Provides directives and requests for rendering audio responses
  * defined in APLA (APL for Audio) documents.
  *
+ * @deprecated APLA types are deprecated. Use APLT types instead.
+ *
  * Directives:
  *   - RenderDocument
  *
@@ -21,6 +23,7 @@ import { Directive, Request } from "./common";
  * An APLA document for audio rendering.
  * When `type` is "APLA", the document contains the full JSON structure.
  * When `type` is "Link", `src` references a document saved in the authoring tool.
+ * @deprecated Use APLT types instead.
  */
 export interface APLADocument {
   type: "APLA" | "Link";
@@ -102,6 +105,7 @@ export interface APLAFilter {
  * Instructs the device to play the audio response defined in the
  * specified APLA document. You can also optionally provide one or more
  * datasources to bind content to the document.
+ * @deprecated Use APLT directives instead.
  */
 export interface APLARenderDocumentDirective extends Directive {
   type: "Alexa.Presentation.APLA.RenderDocument";
@@ -117,6 +121,7 @@ export interface APLARenderDocumentDirective extends Directive {
 /**
  * Sent to notify the skill about any errors that happened during
  * APL audio processing.
+ * @deprecated Use APLT types instead.
  */
 export interface APLARuntimeErrorRequest extends Request {
   type: "Alexa.Presentation.APLA.RuntimeError";
