@@ -28,7 +28,7 @@ export const HTML_MIN_TIMEOUT_SECONDS = 30;
 /**
  * Maximum allowed timeout for the HTML runtime session, in seconds.
  */
-export const HTML_MAX_TIMEOUT_SECONDS = 300;
+export const HTML_MAX_TIMEOUT_SECONDS = 120;
 
 // ===========================================================================
 // Start directive builder
