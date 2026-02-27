@@ -7,4 +7,5 @@ export * from "./apl-directives";
 export * from "./apla-directives";
 export * from "./aplt-directives";
 export * from "./audioplayer-directives";
+export * from "./audioplayer-v2-directives";
 export * from "./videoapp-directives";

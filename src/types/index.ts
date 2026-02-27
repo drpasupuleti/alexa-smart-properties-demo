@@ -8,6 +8,7 @@ export * from "./apl";
 export * from "./apla";
 export * from "./aplt";
 export * from "./audioplayer";
+export * from "./audioplayer-v2";
 export * from "./videoapp";
 export * from "./datastore";
 export * from "./package-manager";
