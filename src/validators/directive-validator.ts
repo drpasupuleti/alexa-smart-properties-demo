@@ -19,6 +19,10 @@ import {
   AudioPlayerPlayDirective,
   AudioPlayerClearQueueDirective,
 } from "../types/audioplayer";
+import {
+  AudioPlayerV2SkipToDirective,
+  AudioPlayerV2ReplayFromDirective,
+} from "../types/audioplayer-v2";
 import { VideoAppLaunchDirective } from "../types/videoapp";
 
 // ===========================================================================
@@ -52,6 +56,8 @@ export const SUPPORTED_DIRECTIVE_TYPES = new Set([
   "Alexa.Presentation.APLA.RenderDocument",
   "Alexa.Presentation.APLT.RenderDocument",
   "Alexa.Presentation.APLT.ExecuteCommands",
+  "AudioPlayerV2.SkipTo",
+  "AudioPlayerV2.ReplayFrom",
 ] as const);
 
 /**
@@ -109,6 +115,10 @@ export function validateDirective(directive: Directive): ValidationResult {
       );
     case "VideoApp.Launch":
       return validateVideoAppLaunch(directive as VideoAppLaunchDirective);
+    case "AudioPlayerV2.SkipTo":
+      return validateAudioPlayerV2SkipTo(directive as AudioPlayerV2SkipToDirective);
+    case "AudioPlayerV2.ReplayFrom":
+      return validateAudioPlayerV2ReplayFrom(directive as AudioPlayerV2ReplayFromDirective);
     default:
       return createResult([
         {
@@ -460,6 +470,91 @@ export function validateAudioPlayerPlay(
             "expectedPreviousToken is required when playBehavior is ENQUEUE",
         });
       }
+    }
+  }
+
+  return createResult(errors);
+}
+
+// ===========================================================================
+// AudioPlayer V2 validators
+// ===========================================================================
+
+/**
+ * Validate an AudioPlayerV2.SkipTo directive.
+ */
+export function validateAudioPlayerV2SkipTo(
+  directive: AudioPlayerV2SkipToDirective,
+): ValidationResult {
+  const errors: ValidationError[] = [];
+
+  if (directive.type !== "AudioPlayerV2.SkipTo") {
+    errors.push({
+      field: "type",
+      message: 'Must be "AudioPlayerV2.SkipTo"',
+    });
+  }
+
+  if (!directive.token || typeof directive.token !== "string") {
+    errors.push({
+      field: "token",
+      message: "Token is required and must be a non-empty string",
+    });
+  }
+
+  if (directive.offsetInMilliseconds === undefined || directive.offsetInMilliseconds === null) {
+    errors.push({
+      field: "offsetInMilliseconds",
+      message: "offsetInMilliseconds is required",
+    });
+  } else if (directive.offsetInMilliseconds < 0) {
+    errors.push({
+      field: "offsetInMilliseconds",
+      message: "offsetInMilliseconds must be non-negative",
+    });
+  }
+
+  return createResult(errors);
+}
+
+/**
+ * Validate an AudioPlayerV2.ReplayFrom directive.
+ */
+export function validateAudioPlayerV2ReplayFrom(
+  directive: AudioPlayerV2ReplayFromDirective,
+): ValidationResult {
+  const errors: ValidationError[] = [];
+
+  if (directive.type !== "AudioPlayerV2.ReplayFrom") {
+    errors.push({
+      field: "type",
+      message: 'Must be "AudioPlayerV2.ReplayFrom"',
+    });
+  }
+
+  if (!directive.token || typeof directive.token !== "string") {
+    errors.push({
+      field: "token",
+      message: "Token is required and must be a non-empty string",
+    });
+  }
+
+  if (directive.offsetInMilliseconds === undefined || directive.offsetInMilliseconds === null) {
+    errors.push({
+      field: "offsetInMilliseconds",
+      message: "offsetInMilliseconds is required",
+    });
+  } else if (directive.offsetInMilliseconds < 0) {
+    errors.push({
+      field: "offsetInMilliseconds",
+      message: "offsetInMilliseconds must be non-negative",
+    });
+  }
+
+  return createResult(errors);
+}
+
+// ===========================================================================
 // VideoApp validators
 // ===========================================================================
 
