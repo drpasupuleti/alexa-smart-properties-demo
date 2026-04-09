@@ -45,3 +45,19 @@ export interface AudioPlayerV2Context {
   /** Whether the device supports seek operations on the current stream. */
   supportsSeek?: boolean;
 }
+
+/**
+ * Event sent by the device when a V2 seek operation (SkipTo or ReplayFrom)
+ * completes. Provides the actual position the player landed on, which may
+ * differ from the requested offset due to keyframe alignment.
+ */
+export interface AudioPlayerV2PlaybackSeekCompleteEvent {
+  /** The directive type that triggered the seek. */
+  seekType: "AudioPlayerV2.SkipTo" | "AudioPlayerV2.ReplayFrom";
+  /** Token of the stream that was seeked. */
+  token: string;
+  /** The offset that was originally requested, in milliseconds. */
+  requestedOffsetInMilliseconds: number;
+  /** The actual offset the player landed on, in milliseconds. */
+  actualOffsetInMilliseconds: number;
+}
