@@ -73,6 +73,9 @@ export interface VideoItem {
  *   - Device must support the VideoApp interface
  *   - Video URLs must be HTTPS
  *   - Response must not include `shouldEndSession` (video keeps session open)
+ *
+ * @deprecated Use Alexa.Presentation.APL video components instead.
+ * VideoApp.Launch will be removed in a future release.
  */
 export interface VideoAppLaunchDirective extends Directive {
   type: "VideoApp.Launch";
