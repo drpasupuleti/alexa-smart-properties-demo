@@ -29,3 +29,19 @@ export interface AudioPlayerV2ReplayFromDirective extends Directive {
   /** Token identifying the audio stream to replay. */
   token: string;
 }
+
+/**
+ * AudioPlayer V2 context included in the request context when the
+ * device supports AudioPlayerV2. Provides the current playback state
+ * for V2-capable streams.
+ */
+export interface AudioPlayerV2Context {
+  /** The token of the currently active V2 stream, if any. */
+  token?: string;
+  /** Current playback offset in milliseconds. */
+  offsetInMilliseconds?: number;
+  /** Current player activity state. */
+  playerActivity?: "IDLE" | "PLAYING" | "PAUSED" | "STOPPED" | "FINISHED";
+  /** Whether the device supports seek operations on the current stream. */
+  supportsSeek?: boolean;
+}
